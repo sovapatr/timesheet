@@ -1,0 +1,23 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2><%= @employee.full_name %></h2>
+  </div>
+</div>
+<table id="job-table">
+  <th>Date</th>
+  <th>Job#</th>
+  <th>Costcode</th>
+  <th>Extra</th>
+  <th>Regular Time</th>
+  <th>Overtime</th>
+  <% @employee.entries.order(:date).each do |entry| %>
+  <tr>
+    <td><%= entry.date %></td>
+    <td><%= Job.find(entry.job_id).job_num %></td>
+    <td><%= Costcode.find(entry.costcode_id).code %></td>
+    <td><%= Extra.find(entry.extra_id ? entry.extra_id : 1).code %></td>
+    <td><%= entry.time_r %></td>
+    <td><%= entry.time_o %></td>
+  </tr>
+  <% end %>
+</table>

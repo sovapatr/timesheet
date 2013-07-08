@@ -1,0 +1,9 @@
+<tr>
+  <td><%= equipment.equip_num %></td>
+  <td><%= equipment.rental %></td>
+  <td><%= equipment.name %></td>
+  <% @job.costcodes.each do |costcode| %>
+  <td><%= equipment.equipment_entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time) %></td>
+  <% end %>
+</tr>
+<tr>

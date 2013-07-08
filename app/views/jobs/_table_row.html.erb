@@ -1,0 +1,20 @@
+<tr>
+  <td><%= link_to employee.full_name, employee %></td>
+  <td>R</td>
+  <td></td>
+  <% @job.costcodes.each do |costcode| %>
+  <td><%= employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_r) %></td>
+  <% end %>
+  <td><%= employee.entries.where(job_id: @job, date: @date).sum(:time_r) %></td>
+  <td><%= employee.entries.where(job_id: @job).sum(:time_r) %></td>
+</tr>
+<tr>
+  <td></td>
+  <td>O</td>
+  <td></td>
+  <% @job.costcodes.each do |costcode| %>
+  <td><%= employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_o) %></td>
+  <% end %>
+  <td><%= employee.entries.where(job_id: @job, date: @date).sum(:time_o) %></td>
+  <td><%= employee.entries.where(job_id: @job).sum(:time_o) %></td>
+</tr>

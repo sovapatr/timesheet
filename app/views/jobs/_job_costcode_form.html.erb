@@ -1,0 +1,8 @@
+<p>
+  <b>Cost Center Code</b><br />
+  <%= f.collection_select(:costcode_id, Costcode.all, :id, :code_description, {placeholder: 'Select'}, {:class => "e1"}) %>
+  <b>Extra</b>
+  <%= f.collection_select(:extra_id, Extra.all, :id, :code_description, {placeholder: 'Select'}, {:class => "e1"}) %>
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove Costcode" %>
+</p>

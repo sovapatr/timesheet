@@ -1,0 +1,27 @@
+
+  <%= form_for([@job, @job.equipment_entries.build]) do |f| %>
+    <div class="field">
+      <table>
+        <tr>
+          <td>Equipment:</td> 
+          <td><%= f.collection_select(:equipment_id, Equipment.all, :id, :name, {placeholder: "Please select"}, {class: "e1"}) %></td>
+        </tr>
+        <tr>
+          <td>Date:</td>
+          <td><%= f.text_field :date, id: 'datepicker2', value: Date.today %></td>
+        </tr>
+        <tr>
+          <td>Cost Center Code:</td>
+          <td><%= f.collection_select(:costcode_id, @job.costcodes, :id, :code_description, {placeholder: "Please select"}, {class: "e1"}) %></td>
+        </tr>
+        <tr>
+          <td>Time:</td>
+          <td><%= f.text_field :time %></td>
+        </tr>
+      </table>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  job_id: 1
+  employee_id: 1
+  costcode_id: 1
+  extra: 1
+  date: 2013-07-01
+  time_r: 1.5
+  time_o: 1.5
+  entered: false
+
+two:
+  job_id: 1
+  employee_id: 1
+  costcode_id: 1
+  extra: 1
+  date: 2013-07-01
+  time_r: 1.5
+  time_o: 1.5
+  entered: false

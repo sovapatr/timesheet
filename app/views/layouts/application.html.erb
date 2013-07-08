@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Timesheet3</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="wrapper">
+  <div id="nav">
+    <div id="title">
+      <b>Gerace Timesheet</b>
+    </div>
+    <ul class="header-items" id="tabs">
+      <li><%= link_to "Jobs", jobs_path %></li>
+      <li><%= link_to "Costcodes", costcodes_path %></li>
+    </ul>
+  </div>
+  
+<%= yield %>
+</div>
+</body>
+</html>

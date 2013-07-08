@@ -1,0 +1,28 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Jobs</h2>
+  </div>
+  <div id="title-bar-right">
+      <%= link_to 'New Job', new_job_path %>
+  </div>
+</div>
+<div id="content">
+  <table id="list-table">
+  <tr>
+    <th>Date</th>
+    <th>Job#</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @jobs.each do |job| %>
+  <tr>
+    <td><%= job.start_date %></td>
+    <td><%= job.job_num %></td>
+    <td><%= link_to 'Show', job %></td>
+    <td><%= link_to 'Edit', edit_job_path(job) %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>

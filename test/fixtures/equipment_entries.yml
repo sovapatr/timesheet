@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  equipment_id: 1
+  costcode_id: 1
+  job_id: 1
+  date: 2013-07-07
+  time: 1.5
+  entered: false
+
+two:
+  equipment_id: 1
+  costcode_id: 1
+  job_id: 1
+  date: 2013-07-07
+  time: 1.5
+  entered: false

@@ -1,0 +1,31 @@
+
+  <%= form_for([@job, @job.entries.build]) do |f| %>
+    <div class="field">
+      <table>
+        <tr>
+          <td>Employee:</td> 
+          <td><%= f.collection_select(:employee_id, Employee.all, :id, :full_name, {placeholder: "Please select"}, {class: "e1"}) %></td>
+        </tr>
+        <tr>
+          <td>Date:</td>
+          <td><%= f.text_field :date, id: 'datepicker', value: Date.today %></td>
+        </tr>
+        <tr>
+          <td>Cost Center Code:</td>
+          <td><%= f.collection_select(:costcode_id, @job.costcodes, :id, :code_description, {placeholder: "Please select"}, {class: "e1"}) %></td>
+        </tr>
+        <tr>
+          <td>Regular Time:</td>
+          <td><%= f.text_field :time_r %></td>
+        </tr>
+        <tr>
+          <td>Overtime:</td>
+          <td><%= f.text_field :time_o %><td>
+        </tr>
+      </table>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>
