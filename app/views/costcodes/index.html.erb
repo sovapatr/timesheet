@@ -6,17 +6,24 @@
   </div>
 </div>
 <div id="content">
-<table id="list-table">
-  <th>Code</th>
-  <th>Description</th>
-  <% @costcodes.each do |costcode| %>
-  <tr>
-     <td><%= costcode.code %></td>
-     <td><%= costcode.description %></td>
-  </tr>
+  <table id="list-table">
+    <th>Code</th>
+    <th>Description</th>
+    <% @costcodes.each do |costcode| %>
+    <tr>
+      <td><%= costcode.code %></td>
+      <td><%= costcode.description %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br />
+  <%= link_to 'Add Costcode', new_costcode_path %><br />
+  <%= link_to 'Back', jobs_path %>
+
+  <h2>Import Costcodes</h2>
+  <%= form_tag import_costcodes_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
   <% end %>
-</table>
-<br />
-<%= link_to 'Add Costcode', new_costcode_path %><br />
-<%= link_to 'Back', jobs_path %>
+
 </div>

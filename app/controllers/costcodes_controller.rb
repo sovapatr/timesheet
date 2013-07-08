@@ -1,4 +1,7 @@
 class CostcodesController < ApplicationController
+  
+  require 'csv'
+  
   def create
     @costcode = Costcode.new(params[:costcode])
     respond_to do |format|
@@ -19,5 +22,14 @@ class CostcodesController < ApplicationController
   
   def index
     @costcodes = Costcode.find(:all, order: :code)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @costcodes }
+    end
+  end
+  
+  def import
+    Costcode.import(params[:file])
+    redirect_to costcodes_path, notice: "Products imported."
   end
 end

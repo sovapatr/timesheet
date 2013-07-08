@@ -8,4 +8,11 @@ class Costcode < ActiveRecord::Base
   def code_description
     [code, description].join(' - ')
   end
+  
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      Costcode.create! row.to_hash
+    end
+end
+  
 end

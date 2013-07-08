@@ -1,3 +1,12 @@
-<%= render 'form' %>
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>New Job</h2>
+  </div>
+  <div id="title-bar-right">
+  </div>
+</div>
 
-<p><%= link_to "Back to List", jobs_path %></p>
+<div id="content">
+  <%= render 'form' %>
+  <p><%= link_to "Back to List", jobs_path %></p>
+</div>

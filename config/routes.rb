@@ -6,7 +6,9 @@ Timesheet3::Application.routes.draw do
     resources :entries
     resources :equipment_entries
   end
-  resources :costcodes
+  resources :costcodes do
+    collection { post :import }
+  end
   resources :employees
   # The priority is based upon order of creation:
   # first created -> highest priority.
