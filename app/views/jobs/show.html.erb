@@ -2,6 +2,9 @@
   <div id="title-bar-left">
     <h2>Job# <span style="color: #8f0800;"><%= @job.job_num %></span> Selected Date: <span style="color: #8f0800;"><%= @date %></span> Job Start Date: <span style="color: #8f0800;"><%= @job.start_date %></span></h2>
   </div>
+   <div id="title-bar-right">
+     <%= link_to "Multi-Entry", massenter_job_path(day: @date) %>
+  </div>
 </div>
 
 <div id="job-content">

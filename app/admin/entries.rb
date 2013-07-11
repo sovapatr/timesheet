@@ -12,19 +12,25 @@ ActiveAdmin.register Entry do
       end
       redirect_to :back
     end
-  batch_action :destroy, false
   
   index do
+    selectable_column
     column :date
+    column :job_id do |job|
+      link_to job.job_id ? Job.find(job.job_id).job_num  : '#', admin_job_path(job.job_id)
+    end
     column :employee_id do |employee|
-      Employee.find(employee.employee_id).full_name
+      link_to Employee.find(employee.employee_id).full_name, admin_employee_path(employee.employee_id)
     end
     column :costcode_id do |costcode|
-      Costcode.find(costcode.costcode_id).code
+      link_to costcode.costcode_id ? Costcode.find(costcode.costcode_id).code : '#', admin_costcode_path(costcode.costcode_id)
     end
-    column :extra_id
+    column :extra_id do |extra|
+      extra.extra_id ? Extra.find(extra.extra_id).code : 0
+    end
     column "Regular Time", :time_r
-    column "Overtime Time", :time_o      
+    column "Overtime Time", :time_o
+    default_actions
   end
     
   form do |f|

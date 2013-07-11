@@ -1,0 +1,29 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Employees</h2>
+  </div>
+  <div id="title-bar-right">
+    <%= link_to 'Add Employee', new_employee_path %>
+  </div>
+</div>
+<div id="content">
+  <table id="list-table">
+    <th>First Name</th>
+    <th>Last Name</th>
+    <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.first_name %></td>
+      <td><%= employee.last_name %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br />
+  <br />
+
+  <h2>Import Employees</h2>
+  <%= form_tag import_employees_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+
+</div>

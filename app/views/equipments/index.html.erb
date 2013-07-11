@@ -1,0 +1,29 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Equipment</h2>
+  </div>
+  <div id="title-bar-right">
+    <%= link_to 'Add Equipment', new_equipment_path %>
+  </div>
+</div>
+<div id="content">
+  <table id="list-table">
+    <th>Equipment #</th>
+    <th>Description</th>
+    <% @equipments.each do |equipment| %>
+    <tr>
+      <td><%= equipment.equip_num %></td>
+      <td><%= equipment.name %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br />
+  <br />
+
+  <h2>Import Equipment</h2>
+  <%= form_tag import_equipments_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+
+</div>

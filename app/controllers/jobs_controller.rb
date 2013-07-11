@@ -53,8 +53,7 @@ class JobsController < ApplicationController
   # PUT /jobs/1.json
   def update
     @job = Job.find(params[:id])
-
-    respond_to do |format|
+   respond_to do |format|
       if @job.update_attributes(params[:job])
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
         format.json { head :no_content }
@@ -62,7 +61,32 @@ class JobsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end 
+  
+  def massenter
+    @date = params[:day] ? Date.parse(params[:day]) : Date.today
+    @entries = Array.new
+    @job = Job.find(params[:id])
+    @job.employees.each do |employee|
+      arr = Array.new
+      @job.job_costcodes.each do |costcode|
+        arr << @job.entries.build(job_id: :id, date: Date.today, costcode_id: costcode.costcode_id, employee_id: employee.id)
+          end
+      @entries << arr
+      end
+  end
+
+  def add_many_entries
+    @job = Job.find(params[:id])
+    # Entry.update(params[:entries].keys, params[:entries].values)
+    params[:entries].each do |entry|
+      myEntry = Job.first.entries.build(entry)
+      if !(myEntry.time_r.blank? && myEntry.time_o.blank?)
+        myEntry.save
+      end
+    end
+    redirect_to @job
+  end
   
 end

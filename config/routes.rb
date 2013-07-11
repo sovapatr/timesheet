@@ -2,6 +2,10 @@ Timesheet3::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :jobs do
+    member do
+      get :massenter 
+    end
+    member { post :add_many_entries }
     resources :job_costcodes
     resources :entries
     resources :equipment_entries
@@ -9,7 +13,14 @@ Timesheet3::Application.routes.draw do
   resources :costcodes do
     collection { post :import }
   end
-  resources :employees
+  resources :employees do
+    resources :entries
+    collection { post :import }
+  end
+  resources :equipments do
+    collection { post :import }
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

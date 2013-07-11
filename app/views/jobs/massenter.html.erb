@@ -1,0 +1,54 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Multi Enter</h2>
+  </div>
+  <div id="title-bar-right">
+  </div>
+</div>
+<% if false %>
+<% @job.employees.each do |employee| %>
+  <%= employee.full_name %>
+<% end %>
+
+<%= form_tag add_many_entries_job_path :method => :post do %>
+  <% @job.employees.each do |employee| %>
+<%= fields_for @job.entries.build(job_id: @job.id, costcode_id: @job.job_costcodes.first.costcode_id) do |f| %>
+      <%= @job.job_costcodes.first.costcode_id %>
+      <%= f.text_field :job_id %>
+      <%= f.text_field :employee_id %>
+      <%= f.text_field :costcode_id %>
+<br />
+    <% end %>
+  <% end %>
+  <%= submit_tag "Submit" %>
+<% end %>
+<% end %>
+
+<%#= form_tag add_many_entries_job_path :method => :post do %>
+<%#= form_for(@job) do |f| %>
+<%= form_tag add_many_entries_job_path, :method => :post do %>
+  <table>
+    <th>Employee</th>
+    <% @job.job_costcodes.each do |costcode| %>
+    <th><%= Costcode.find(costcode.costcode_id).code %> - Regular</th>
+    <th><%= Costcode.find(costcode.costcode_id).code %> - Overtime</th>
+    <% end %>
+    <% @entries.each do |employees| %>
+    <tr>
+      <td><%= Employee.find(employees.first.employee_id).full_name %></td>
+      <%#= fields_for :entries, employees do |builder| %>
+  <% employees.each do |entry| %>    
+  <%= fields_for "entries[]", entry do |builder| %>
+      <td><%= builder.text_field :time_r %></td>
+      <td><%= builder.text_field :time_o %></td>
+      <%= builder.hidden_field :job_id, value: :id %>
+      <%= builder.hidden_field :costcode_id, value: entry.costcode_id %>
+      <%= builder.hidden_field :employee_id, value: employees.first.employee_id %>
+      <%= builder.hidden_field :date, value: @date %>
+      <% end %>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+<%= submit_tag "Submit" %>
+<% end %>
