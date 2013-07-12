@@ -25,9 +25,8 @@ class JobsController < ApplicationController
   # GET /jobs/new.json
   def new
     @job = Job.new
-    3.times do
-      job_costcode = @job.job_costcodes.build
-    end
+    job_costcode = @job.job_costcodes.build
+    job_employee = @job.job_employees.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @job }
@@ -81,7 +80,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     # Entry.update(params[:entries].keys, params[:entries].values)
     params[:entries].each do |entry|
-      myEntry = Job.first.entries.build(entry)
+      myEntry = @job.entries.build(entry)
       if !(myEntry.time_r.blank? && myEntry.time_o.blank?)
         myEntry.save
       end

@@ -1,25 +1,32 @@
 <div id="title-bar">
   <div id="title-bar-left">
-    <h2>Multi Enter</h2>
+    <h2>Multi-Enter for Selected Date: <span style="color: #8f0800;"><%= @date %></span></h2>
   </div>
   <div id="title-bar-right">
+    <%= link_to "Back", job_path(day: @date) %>
   </div>
 </div>
 <div id="content">
 <%= form_tag add_many_entries_job_path, :method => :post do %>
-  <table>
-    <th>Employee</th>
+  <table id="multi-table">
+    <th>Costcodes:</th>
     <% @job.job_costcodes.each do |costcode| %>
-    <th><%= Costcode.find(costcode.costcode_id).code %> - Regular</th>
-    <th><%= Costcode.find(costcode.costcode_id).code %> - Overtime</th>
+    <th colspan="2"><%= Costcode.find(costcode.costcode_id).code %></th>    
     <% end %>
+    <tr>
+      <td><b>Employee</b></td>
+      <% @job.job_costcodes.each do |costcode| %>
+      <td style="text-align: center;">Regular</td>
+      <td style="text-align: center;">Overtime</td>    
+    <% end %>
+    </tr>
     <% @entries.each do |employees| %>
     <tr>
       <td><%= Employee.find(employees.first.employee_id).full_name %></td>
       <% employees.each do |entry| %>    
         <%= fields_for "entries[]", entry do |builder| %>
-      <td><%= builder.text_field :time_r, size: 15 %></td>
-      <td><%= builder.text_field :time_o, size: 15 %></td>
+      <td><%= builder.text_field :time_r, size: 8 %></td>
+      <td><%= builder.text_field :time_o, size: 8 %></td>
           <%= builder.hidden_field :job_id, value: :id %>
           <%= builder.hidden_field :costcode_id, value: entry.costcode_id %>
           <%= builder.hidden_field :employee_id, value: employees.first.employee_id %>

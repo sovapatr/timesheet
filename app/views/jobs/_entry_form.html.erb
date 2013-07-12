@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td>Employee:</td> 
-          <td><%= f.collection_select(:employee_id, Employee.all, :id, :full_name, {placeholder: "Please select"}, {class: "e1"}) %></td>
+          <td><%= f.collection_select(:employee_id, @job.employees, :id, :full_name, {placeholder: "Please select"}, {class: "e1"}) %></td>
         </tr>
         <tr>
           <td>Date:</td>

@@ -1,6 +1,6 @@
 class Employee < ActiveRecord::Base
   has_many :entries
-  has_many :jobs, through: :entries
+  has_many :jobs, through: :job_employees
   attr_accessible :first_name, :last_name, :entries_attributes
   accepts_nested_attributes_for :entries
   def full_name

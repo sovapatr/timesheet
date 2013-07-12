@@ -317,7 +317,6 @@ padding-right: 0px;
 padding-top: 0px;
 text-shadow: rgb(255, 255, 255) 0px 1px 0px;
 vertical-align: middle;
-width: 914px;
 }
 
 #title-bar-right {
@@ -551,4 +550,8 @@ a:hover {
 }
 #content a:hover {
  color: #8f0800 
+}
+#multi-table th {
+  background: linear-gradient(180deg, #cb1e14, #8f0800);
+  color: white;
 }

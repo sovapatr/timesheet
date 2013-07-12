@@ -1,9 +1,9 @@
 
-<%= form_for(@job) do |f| %>
+<%= nested_form_for @job do |f| %>
 
   <div class="field">
     <%= f.label :start_date %><br />
-    <%= f.text_field :start_date, id: 'datepicker' %>
+    <%= f.text_field :start_date, {id: 'datepicker', value: (@job.start_date ? @job.start_date : Date.today)} %>
   </div>
   <div class="field">
     <%= f.label :job_num %><br />
@@ -11,10 +11,19 @@
   </div>
 
   <div class="field">
+        <p><b>Costcenter Codes:</b></p>
   <%= f.fields_for :job_costcodes do |builder| %>
     <%= render "job_costcode_form", :f => builder %>
   <% end %>
+    <p><%= f.link_to_add "Add Costcode", :job_costcodes %></p>
   </div>
+
+<p><b>Employees:</b></p>
+  <%= f.fields_for :job_employees do |task_form| %>
+    <p><%= task_form.collection_select(:employee_id, Employee.all, :id, :full_name, {placeholder: 'Select'}, {:class => "e1"}) %>
+      <%= task_form.link_to_remove "Remove Employee" %></p>
+  <% end %>
+<p><%= f.link_to_add "Add Employee", :job_employees %></p>
 
 
 

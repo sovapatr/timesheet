@@ -1,16 +1,13 @@
-<%= render 'form' %>
-
-
-<h2>Add Cost Center Code</h2>
-<%= form_for([@job, @job.job_costcodes.build]) do |f| %>
-  <div class="field">
-    <b>Cost Center Code</b><br />
-    <%= f.collection_select(:costcode_id, Costcode.all, :id, :code_description, {placeholder: 'Select'}, {:class => "e1"}) %>
-    <b>Extra</b>
-    <%= f.collection_select(:extra_id, Extra.all, :id, :code_description, {placeholder: 'Select'}, {:class => "e1"}) %>
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Edit Job: <span style="color: #8f0800;"><%= @job.job_num %></span></h2>
   </div>
-<div class="actions">
-  <%= f.submit "Add Costcode"%>
+  <div id="title-bar-right">
+    <%= link_to "Back", jobs_path %>
+  </div>
 </div>
-<% end %>
+
+<div id="content">
+<%= render 'form' %>
+</div>
 <p><%= link_to "Back to List", jobs_path %></p>
