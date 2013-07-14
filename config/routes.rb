@@ -3,7 +3,9 @@ Timesheet3::Application.routes.draw do
   ActiveAdmin.routes(self)
   resources :jobs do
     member do
-      get :massenter 
+      get :massenter
+      get :multienter
+      post :add_many_entries_temp
     end
     member { post :add_many_entries }
     resources :job_costcodes

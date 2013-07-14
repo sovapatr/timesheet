@@ -5,6 +5,7 @@ class Costcode < ActiveRecord::Base
   has_many :entries
   has_many :equipment_entries
   attr_accessible :code, :description, :job_id
+  alias_attribute :name, :code
   def code_description
     [code, description].join(' - ')
   end

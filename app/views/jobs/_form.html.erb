@@ -15,7 +15,7 @@
   <%= f.fields_for :job_costcodes do |builder| %>
     <%= render "job_costcode_form", :f => builder %>
   <% end %>
-    <p><%= f.link_to_add "Add Costcode", :job_costcodes %></p>
+    <p><%= f.link_to_add "Add Costcode", :job_costcodes, :id => "action-link" %></p>
   </div>
 
 <p><b>Employees:</b></p>
@@ -23,7 +23,7 @@
     <p><%= task_form.collection_select(:employee_id, Employee.all, :id, :full_name, {placeholder: 'Select'}, {:class => "e1"}) %>
       <%= task_form.link_to_remove "Remove Employee" %></p>
   <% end %>
-<p><%= f.link_to_add "Add Employee", :job_employees %></p>
+<p><%= f.link_to_add "Add Employee", :job_employees, :id => "action-link" %></p>
 
 
 

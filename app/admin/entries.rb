@@ -1,10 +1,12 @@
 ActiveAdmin.register Entry do
   scope :unentered
   
-  filter :job_id, collection: Hash[Job.all.map{|b| [b.job_num,b.id]}], as: :select
+  filter :job
   filter :employee_id
+  filter :costcode
   filter :date
   filter :entered
+  
   
   batch_action :enter do |selection|
       Entry.find(selection).each do |entry|
@@ -16,18 +18,10 @@ ActiveAdmin.register Entry do
   index do
     selectable_column
     column :date
-    column :job_id do |job|
-      link_to job.job_id ? Job.find(job.job_id).job_num  : '#', admin_job_path(job.job_id)
-    end
-    column :employee_id do |employee|
-      link_to Employee.find(employee.employee_id).full_name, admin_employee_path(employee.employee_id)
-    end
-    column :costcode_id do |costcode|
-      link_to costcode.costcode_id ? Costcode.find(costcode.costcode_id).code : '#', admin_costcode_path(costcode.costcode_id)
-    end
-    column :extra_id do |extra|
-      extra.extra_id ? Extra.find(extra.extra_id).code : 0
-    end
+    column :job, sortable: 'jobs.job_num'
+    column :employee, sortable: 'employees.last_name'
+    column :costcode, sortable: 'costcodes.code'
+    column :extra
     column "Regular Time", :time_r
     column "Overtime Time", :time_o
     default_actions
@@ -36,9 +30,9 @@ ActiveAdmin.register Entry do
   form do |f|
       
     f.inputs "Entry" do
-      f.input :job_id, :as => :select,      :collection => Hash[Job.all.map{|b| [b.job_num,b.id]}]
+      f.input :job
       f.input :date 
-      f.input :costcode_id, :as => :select,      :collection => Hash[Costcode.all.map{|b| [b.code,b.id]}]
+      f.input :costcode
       f.input :time_r, :label => "Regular Time"
       f.input :time_o, :label => "Overtime"
       f.input :entered
@@ -49,17 +43,19 @@ ActiveAdmin.register Entry do
   show do |entry|
       attributes_table do
         row :employee
-        row :job_id do
-          link_to Job.find(entry.job_id).job_num, admin_job_path(entry.job_id)
-        end
+        row :job
         row :date
-        row :costcode_id do
-          link_to Costcode.find(entry.costcode_id).code, admin_job_path(entry.costcode_id)
-        end
+        row :costcode
         row :time_r
         row :time_o  
         row :entered
       end
       active_admin_comments
     end
+  
+  controller do
+    def scoped_collection
+      end_of_association_chain.includes(:employee, :costcode, :job)
+    end
+  end  
 end

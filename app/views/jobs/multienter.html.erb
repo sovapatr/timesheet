@@ -1,0 +1,40 @@
+<div id="title-bar">
+  <div id="title-bar-left">
+    <h2>Multi-Enter for Selected Date: <span style="color: #8f0800;"><%= @date %></span></h2>
+  </div>
+  <div id="title-bar-right">
+    <%= link_to "Back", job_path(day: @date) %>
+  </div>
+</div>
+<div id="content">
+  <%= form_for @job do |f| %>
+  <table id="multi-table">
+    <th>Costcode</th>
+    <% @job.costcodes.each do |costcode| %>
+    <th colspan='2'><%= costcode.code %></th>
+    <% end %>
+    <tr>
+      <td>Employee</td>
+      <% @job.costcodes.each do |costcode| %>
+      <td style="text-align: center;">Regular</td>
+      <td style="text-align: center;">Overtime</td>
+      <% end %>
+    <% @job.employees.each do |employee| %>
+    <tr>
+      <td><%= employee.full_name %></td>
+      <% @job.costcodes.each do |costcode| %>
+        <%= f.fields_for :entries, @job.entries.find_or_initialize_by_date_and_employee_id_and_costcode_id(@date, employee.id, costcode.id) do |g| %>
+      <td><%= g.text_field :time_r, size: 8 %></td>
+      <td><%= g.text_field :time_o, size: 8 %></td>
+          <%= g.hidden_field :costcode_id, value: costcode.id %>
+          <%= g.hidden_field :employee_id, value: employee.id %>
+          <%= g.hidden_field :date, value: @date %>
+        <% end %>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+    
+  <%= f.submit "Submit" %>
+  <% end %>
+</div>

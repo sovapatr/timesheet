@@ -3,52 +3,16 @@
     <h2>Job# <span style="color: #8f0800;"><%= @job.job_num %></span> Selected Date: <span style="color: #8f0800;"><%= @date %></span> Job Start Date: <span style="color: #8f0800;"><%= @job.start_date %></span></h2>
   </div>
    <div id="title-bar-right">
-     <%= link_to "Multi-Entry", massenter_job_path(day: @date) %>
+     <%= link_to "Multi-Entry", multienter_job_path(day: @date) %>
   </div>
 </div>
 
 <div id="job-content">
-  <table id="job-table">
-    <th>Employee Name</th>
-    <th>Reg</th>
-    <th></th>
-    <% @job.costcodes.each do |costcode| %>
-    <th><%= costcode.code %></th>
-    <% end %>
-    <th>Total hrs</th>
-    <th>Job Totals</th>
-    <tr>
-      <td></td>
-      <td>OT</td>
-      <td>Extra #</td>
-      <% @job.job_costcodes.each do |costcode| %>
-      <td><%= Extra.find(costcode.extra_id).code %></td>
-      <% end %>
-      <td></td>
-      <td></td>
-    </tr>
-    <% @job.employees.each do |employee| %>
-      <% if employee.entries.where(job_id: @job.id, date: @date).count > 0 %>
-        <%= render 'table_row', employee: employee %>
-      <% end %>
-    <% end %>
-  </table>
-  <div id="week_select">
-    <% 7.times do |f| %>
-      <% if @date.beginning_of_week(start_day = :sunday) + f  == @date %>
-        <span style="color: #8f0800;">
-          <%= @date.strftime("%a") %>
-        </span>
-      <% else %>
-        <%= link_to (@date.beginning_of_week(start_day = :sunday) + f).strftime("%a"), :day => @date.beginning_of_week(start_day = :sunday) + f %>
-      <% end %>
-    <% end %>
-    <%= form_tag job_path, :method => :get, :class => 'form-search' do %>
-    <div class="input-append">
-      Start of Week: <%= select_tag :day, options_for_select(@job_weeks.map { |f| [f.first,f.first] }) %>
-      <button type="submit" class="btn">Search</button>
-    </div>
-     <% end %>
+  
+  <%= render 'job_table' %>
+  
+  <div id="week_select"> 
+    <%= render 'week_select' %>
   </div>
 
   <div id="add-entry">

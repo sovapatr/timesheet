@@ -3,18 +3,24 @@
   <td>R</td>
   <td></td>
   <% @job.costcodes.each do |costcode| %>
-  <td><%= employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_r) %></td>
+  <% sum = employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_r) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
   <% end %>
-  <td><%= employee.entries.where(job_id: @job, date: @date).sum(:time_r) %></td>
-  <td><%= employee.entries.where(job_id: @job).sum(:time_r) %></td>
+  <% sum = employee.entries.where(job_id: @job, date: @date).sum(:time_r) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
+  <% sum = employee.entries.where(job_id: @job).sum(:time_r) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
 </tr>
 <tr>
   <td></td>
   <td>O</td>
   <td></td>
   <% @job.costcodes.each do |costcode| %>
-  <td><%= employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_o) %></td>
+  <% sum = employee.entries.where(job_id: @job, costcode_id: costcode, date: @date).sum(:time_o) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
   <% end %>
-  <td><%= employee.entries.where(job_id: @job, date: @date).sum(:time_o) %></td>
-  <td><%= employee.entries.where(job_id: @job).sum(:time_o) %></td>
+  <% sum = employee.entries.where(job_id: @job, date: @date).sum(:time_o) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
+  <% sum = employee.entries.where(job_id: @job).sum(:time_o) %>
+  <td style="color: <%= sum > 0 ? "#8f0800" : "black" %>;"><%= sum %></td>
 </tr>

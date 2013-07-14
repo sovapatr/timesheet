@@ -1,0 +1,25 @@
+<table id="job-table">
+  <th>Employee Name</th>
+  <th>Reg</th>
+  <th></th>
+  <% @job.costcodes.each do |costcode| %>
+  <th><%= costcode.code %></th>
+  <% end %>
+  <th>Total hrs</th>
+  <th>Job Totals</th>
+  <tr>
+    <td></td>
+    <td>OT</td>
+    <td>Extra #</td>
+    <% @job.job_costcodes.each do |costcode| %>
+    <td><%= Extra.find(costcode.extra_id).code %></td>
+    <% end %>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @job.employees.each do |employee| %>
+  <% if employee.entries.where(job_id: @job.id, date: @date).count > 0 %>
+  <%= render 'table_row', employee: employee %>
+  <% end %>
+  <% end %>
+</table>

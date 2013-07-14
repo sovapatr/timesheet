@@ -540,6 +540,52 @@ a:hover {
   padding: 5px 15px 5px 15px;
   border-bottom: 2px solid #ccc;
 }
+
+
+.remove_nested_fields {
+background: linear-gradient(180deg, #cb1e14, #8f0800);
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(194, 194, 194);
+border-bottom-left-radius: 200px;
+border-bottom-right-radius: 200px;
+border-style: solid;
+border-width: 1px;
+border-image-slice: 100%;
+border-left-color: rgb(199, 199, 199);
+border-right-color: rgb(199, 199, 199);
+border-top-color: rgb(211, 211, 211);
+border-top-left-radius: 200px;
+border-top-right-radius: 200px;
+box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px 0px, rgba(255, 255, 255, 0.8) 0px 1px 0px 0px inset;
+color: white !important;
+cursor: auto;
+display: inline-block;
+font-family: Helvetica, Arial, sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: bold;
+height: 12px;
+line-height: 12px;
+outline-color: rgb(94, 100, 105);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 10px;
+padding-left: 17px;
+padding-right: 17px;
+padding-top: 12px;
+text-align: right;
+text-decoration: none;
+vertical-align: baseline;
+
+}
+
+.remove_nested_fields:hover {
+ background: white; 
+ color: #8f0800 !important;
+}
+
+
 #content {
   margin: 10px;
 }
@@ -554,4 +600,55 @@ a:hover {
 #multi-table th {
   background: linear-gradient(180deg, #cb1e14, #8f0800);
   color: white;
+}
+
+#action-link {
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+-webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px 0px, rgba(255, 255, 255, 0.8) 0px 1px 0px 0px inset;
+-webkit-font-smoothing: antialiased;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgba(0, 0, 0, 0);
+background-image: -webkit-linear-gradient(-90deg, white, rgb(231, 231, 231));
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(194, 194, 194);
+border-bottom-left-radius: 200px;
+border-bottom-right-radius: 200px;
+border-style: solid;
+border-width: 1px;
+border-image-slice: 100%;
+border-left-color: rgb(199, 199, 199);
+border-right-color: rgb(199, 199, 199);
+border-top-color: rgb(211, 211, 211);
+border-top-left-radius: 200px;
+border-top-right-radius: 200px;
+box-shadow: rgba(0, 0, 0, 0.0980392) 0px 1px 1px 0px, rgba(255, 255, 255, 0.8) 0px 1px 0px 0px inset;
+color: rgb(94, 100, 105);
+cursor: auto;
+display: inline-block;
+font-family: Helvetica, Arial, sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: bold;
+height: 12px;
+line-height: 12px;
+outline-color: rgb(94, 100, 105);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 10px;
+padding-left: 17px;
+padding-right: 17px;
+padding-top: 12px;
+text-align: right;
+text-decoration: none;
+text-shadow: rgb(255, 255, 255) 0px 1px 0px;
+vertical-align: baseline;
+
+}
+
+#action-link:hover {
+ background: white; 
 }

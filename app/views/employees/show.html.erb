@@ -20,4 +20,5 @@
     <td><%= entry.time_o %></td>
   </tr>
   <% end %>
+  Total Hours so far this week: <%= @employee.entries.this_week.pluck(:time_r).compact.sum + @employee.entries.this_week.pluck(:time_o).compact.sum %>
 </table>
